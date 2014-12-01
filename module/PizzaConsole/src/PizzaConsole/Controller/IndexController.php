@@ -53,7 +53,6 @@ class IndexController extends AbstractConsoleController
      */
     public function indexAction()
     {
-        $this->console->writeLine();
         $this->console->writeLine('Unsere Pizzaliste');
         $this->console->writeLine('-----------------');
         $this->console->writeLine();

@@ -14,6 +14,7 @@ return array(
         'Application',
         'PizzaData',
         'PizzaConsole',
+        'PizzaGenerator',
         'ZendDeveloperTools',
     ),
     'module_listener_options' => array(

@@ -4,7 +4,7 @@
  *
  * Beispiele für ZF2 Konsolenanwendungen
  *
- * @package    Application
+ * @package    PizzaConsole
  * @author     Ralf Eggert <r.eggert@travello.de>
  * @link       http://www.ralfeggert.de/
  */
@@ -12,7 +12,7 @@
 /**
  * namespace definition and usage
  */
-namespace Application\Controller;
+namespace PizzaConsole\Controller;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -20,7 +20,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 /**
  * Class IndexControllerFactory
  *
- * @package Application\Controller
+ * @package PizzaConsole\Controller
  */
 class IndexControllerFactory implements FactoryInterface
 {

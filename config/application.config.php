@@ -13,6 +13,7 @@ return array(
     'modules'                 => array(
         'Application',
         'PizzaData',
+        'PizzaConsole',
         'ZendDeveloperTools',
     ),
     'module_listener_options' => array(

@@ -21,7 +21,7 @@ define('TIMESTAMP_START', microtime(true));
 define('APPLICATION_ROOT', realpath(__DIR__ . '/..'));
 
 // setup autoloading
-require_once '../vendor/autoload.php';
+require_once APPLICATION_ROOT . '/vendor/autoload.php';
 
 // change dir
 chdir(dirname(__DIR__));

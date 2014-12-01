@@ -1,0 +1,62 @@
+<?php
+namespace PizzaConsole\Controller;
+
+use PizzaData\Service\PizzaServiceInterface;
+use Zend\Console\ColorInterface as Color;
+use Zend\Mvc\Controller\AbstractConsoleController;
+use Zend\Text\Table\Table;
+use Zend\View\Model\ConsoleModel;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    public function indexAction()
+    {
+        $this->console->writeLine('Unsere Pizzaliste');
+        $this->console->writeLine('-----------------');
+        $this->console->writeLine();
+
+        $columnWidths = array(
+            'id'          => 1,
+            'title'       => 1,
+            'description' => 1,
+            'price'       => 1,
+        );
+
+        $pizzaList = $this->getPizzaService()->fetchAllPizzas();
+
+        foreach ($pizzaList as $pizzaRow) {
+            foreach ($columnWidths as $columnKey => $columnWidth) {
+                if (strlen($pizzaRow[$columnKey]) > $columnWidth) {
+                    $columnWidths[$columnKey] = strlen($pizzaRow[$columnKey]);
+                }
+            }
+        }
+
+        $columnWidths['price'] = $columnWidths['price'] + 2;
+
+        $table = new Table(
+            array('columnWidths' => array_values($columnWidths))
+        );
+        $table->setDecorator('unicode');
+
+        foreach ($pizzaList as $pizzaRow) {
+            $pizzaPrice = number_format($pizzaRow['price'] / 100, 2) . '€';
+
+            $table->appendRow(
+                array(
+                    'id'          => $pizzaRow['id'],
+                    'title'       => $pizzaRow['title'],
+                    'description' => $pizzaRow['description'],
+                    'price'       => $pizzaPrice,
+                )
+            );
+        }
+
+        $consoleModel = new ConsoleModel();
+        $consoleModel->setResult($table);
+
+        return $consoleModel;
+    }
+}

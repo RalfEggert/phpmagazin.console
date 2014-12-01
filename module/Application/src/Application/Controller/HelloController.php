@@ -52,8 +52,6 @@ class HelloController extends AbstractConsoleController
             $greeting = 'Hallo';
         }
 
-        $this->console->writeText('HONK');
-
         $this->console->writeLine(
             $this->console->colorize($greeting, Color::NORMAL, Color::LIGHT_RED)
             . ' '

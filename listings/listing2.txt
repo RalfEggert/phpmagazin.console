@@ -1,0 +1,30 @@
+<?php
+return array(
+    [...]
+
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'hello-world' => array(
+                    'options' => array(
+                        'route'    => 'hello world',
+                        'defaults' => array(
+                            'controller' => 'hello',
+                            'action'     => 'world',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+
+    'controllers'     => array(
+        'invokables' => array(
+            'hello' => 'Application\Controller\HelloController',
+        ),
+
+        [...]
+    ),
+
+    [...]
+);

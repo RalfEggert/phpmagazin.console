@@ -1,0 +1,29 @@
+<?php
+namespace Application;
+
+use Zend\Console\Adapter\AdapterInterface;
+use Zend\ModuleManager\Feature\ConsoleBannerProviderInterface;
+use Zend\ModuleManager\Feature\ConsoleUsageProviderInterface;
+
+[...]
+
+class Module implements
+    [...]
+
+    ConsoleBannerProviderInterface,
+    ConsoleUsageProviderInterface
+{
+    [...]
+
+    public function getConsoleBanner(AdapterInterface $console)
+    {
+        return 'ZF2 Konsolenanwendung vom PHP Magazin';
+    }
+
+    public function getConsoleUsage(AdapterInterface $console)
+    {
+        return array(
+            'hello world' => 'Wir zeigen der Welt, dass wir da sind!',
+        );
+    }
+}

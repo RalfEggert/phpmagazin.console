@@ -1,0 +1,12 @@
+<?php
+namespace Application\Controller;
+
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class HelloController extends AbstractConsoleController
+{
+    public function worldAction()
+    {
+        $this->console->writeLine('Hallo Welt!');
+    }
+}

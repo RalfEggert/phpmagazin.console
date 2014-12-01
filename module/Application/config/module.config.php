@@ -30,7 +30,35 @@ return array(
         ),
     ),
 
+    'console' => array(
+        'router' => array(
+            'routes' => array(
+                'hello-you' => array(
+                    'options' => array(
+                        'route'    => 'hello <you> [--random|-r]:random',
+                        'defaults' => array(
+                            'controller' => 'hello',
+                            'action'     => 'you',
+                        ),
+                    ),
+                ),
+                'hello-world' => array(
+                    'options' => array(
+                        'route'    => 'hello world',
+                        'defaults' => array(
+                            'controller' => 'hello',
+                            'action'     => 'world',
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    ),
+
     'controllers'     => array(
+        'invokables' => array(
+            'hello' => 'Application\Controller\HelloController',
+        ),
         'factories' => array(
             'index' => 'Application\Controller\IndexControllerFactory',
         ),

@@ -1,0 +1,150 @@
+<?php
+/**
+ * Automatically generated file
+ *
+ * @package PizzaData\Entity
+ */
+namespace PizzaData\Entity;
+
+/**
+ * Class PizzaData\Entity
+ *
+ * @author Ralf Eggert
+ */
+class PizzaEntity
+{
+    /**
+     * id property
+     *
+     * @var integer
+     */
+    protected $id = null;
+
+    /**
+     * timestamp property
+     *
+     * @var string
+     */
+    protected $timestamp = null;
+
+    /**
+     * title property
+     *
+     * @var string
+     */
+    protected $title = null;
+
+    /**
+     * description property
+     *
+     * @var string
+     */
+    protected $description = null;
+
+    /**
+     * price property
+     *
+     * @var integer
+     */
+    protected $price = null;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Get timestamp
+     *
+     * @return string
+     */
+    public function getTimestamp()
+    {
+        return $this->timestamp;
+    }
+
+    /**
+     * Set timestamp
+     *
+     * @param string $timestamp
+     */
+    public function setTimestamp($timestamp)
+    {
+        $this->timestamp = $timestamp;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+}

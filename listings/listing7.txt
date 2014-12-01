@@ -1,0 +1,47 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Db\Adapter\AdapterInterface;
+use Zend\Db\Metadata\Metadata;
+use Zend\Db\Metadata\Object\ColumnObject;
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    protected $dbAdapter;
+
+    public function getDbAdapter()
+    {
+        return $this->dbAdapter;
+    }
+
+    public function setDbAdapter(AdapterInterface $dbAdapter)
+    {
+        $this->dbAdapter = $dbAdapter;
+    }
+
+    protected function fetchTableColumns()
+    {
+        $metaData = new Metadata($this->getDbAdapter());
+
+        $columns = array();
+
+        foreach ($metaData->getTable('pizzas')->getColumns() as $pizzaColumn) {
+            /** @var $pizzaColumn ColumnObject */
+            switch ($pizzaColumn->getDataType()) {
+                case 'varchar':
+                case 'text':
+                case 'timestamp':
+                    $type = 'string';
+                    break;
+
+                default:
+                    $type = 'integer';
+            }
+
+            $columns[$pizzaColumn->getName()] = $type;
+        }
+
+        return $columns;
+    }
+}

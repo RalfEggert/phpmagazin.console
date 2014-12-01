@@ -1,0 +1,33 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Code\Generator\PropertyGenerator;
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    protected function generateProperty($columnName, $columnType)
+    {
+        $property = new PropertyGenerator($columnName);
+        $property->addFlag(PropertyGenerator::FLAG_PROTECTED);
+        $property->setDocBlock(
+            new DocBlockGenerator(
+                $columnName . ' property',
+                null,
+                array(
+                    array(
+                        'name'        => 'var',
+                        'description' => $columnType,
+                    )
+                )
+            )
+        );
+
+        return $property;
+    }
+
+    [...]
+}

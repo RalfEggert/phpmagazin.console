@@ -1,0 +1,42 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    public function indexAction()
+    {
+        $this->console->writeLine('Pizza backen');
+        $this->console->writeLine('------------');
+        $this->console->writeLine();
+
+        $pizzaColumns = $this->fetchTableColumns();
+        $pizzaClass   = $this->generateEntityClass($pizzaColumns);
+        $pizzaFile    = $this->generateEntityFile($pizzaClass);
+
+        $entityDirectory = APPLICATION_ROOT . '/module/PizzaData';
+        $entityDirectory .= '/src/PizzaData/Entity';
+        $entityFileName = 'PizzaEntity.php';
+
+        if (!is_dir($entityDirectory)) {
+            mkdir($entityDirectory, 0777, true);
+        }
+
+        file_put_contents(
+            $entityDirectory . '/' . $entityFileName, $pizzaFile->generate()
+        );
+
+        $this->console->writeLine(
+            $this->console->colorize(
+                'PizzaData\Entity', Color::GREEN
+            ) . ' wurde in Datei ' . $this->console->colorize(
+                $entityDirectory . '/' . $entityFileName, Color::GREEN
+            ) . ' geschrieben.'
+        );
+        $this->console->writeLine();
+
+    }
+}

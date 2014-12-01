@@ -1,0 +1,42 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Code\Generator\ClassGenerator;
+use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    protected function generateEntityClass(array $columns = array())
+    {
+        $class = new ClassGenerator('PizzaEntity', 'PizzaData\Entity');
+        $class->setDocBlock(
+            new DocBlockGenerator(
+                'Class PizzaData\Entity',
+                null,
+                array(
+                    array(
+                        'name'        => 'author',
+                        'description' => 'Ralf Eggert',
+                    )
+                )
+            )
+        );
+
+        foreach ($columns as $columnName => $columnType) {
+            $property  = $this->generateProperty($columnName, $columnType);
+            $getMethod = $this->generateGetMethod($columnName, $columnType);
+            $setMethod = $this->generateSetMethod($columnName, $columnType);
+
+            $class->addPropertyFromGenerator($property);
+            $class->addMethodFromGenerator($getMethod);
+            $class->addMethodFromGenerator($setMethod);
+        }
+
+        return $class;
+    }
+
+    [...]
+}

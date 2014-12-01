@@ -1,0 +1,45 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Code\Generator\MethodGenerator;
+use Zend\Code\Generator\ParameterGenerator;
+use Zend\Filter\StaticFilter;
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    protected function generateSetMethod($columnName, $columnType)
+    {
+        $setMethodName = 'set' . StaticFilter::execute(
+                $columnName, 'Word\UnderscoreToCamelCase'
+            );
+
+        $setMethod = new MethodGenerator($setMethodName);
+        $setMethod->addFlag(MethodGenerator::FLAG_PUBLIC);
+        $setMethod->setParameter(
+            new ParameterGenerator($columnName)
+        );
+        $setMethod->setDocBlock(
+            new DocBlockGenerator(
+                'Set ' . $columnName,
+                null,
+                array(
+                    array(
+                        'name'        => 'param',
+                        'description' => $columnType . ' $' . $columnName,
+                    )
+                )
+            )
+        );
+        $setMethod->setBody(
+            '$this->' . $columnName . ' = $' . $columnName . ';'
+        );
+
+        return $setMethod;
+    }
+
+    [...]
+}

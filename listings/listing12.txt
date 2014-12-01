@@ -1,0 +1,33 @@
+<?php
+namespace PizzaGenerator\Controller;
+
+use Zend\Code\Generator\DocBlockGenerator;
+use Zend\Code\Generator\FileGenerator;
+use Zend\Mvc\Controller\AbstractConsoleController;
+
+class IndexController extends AbstractConsoleController
+{
+    [...]
+
+    protected function generateEntityFile(ClassGenerator $class)
+    {
+        $file = new FileGenerator();
+        $file->setClass($class);
+        $file->setDocBlock(
+            new DocBlockGenerator(
+                'Automatically generated file',
+                null,
+                array(
+                    array(
+                        'name'        => 'package',
+                        'description' => $class->getNamespaceName(),
+                    )
+                )
+            )
+        );
+
+        return $file;
+    }
+
+    [...]
+}

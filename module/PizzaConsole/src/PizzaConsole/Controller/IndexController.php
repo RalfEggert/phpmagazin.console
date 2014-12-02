@@ -15,7 +15,6 @@
 namespace PizzaConsole\Controller;
 
 use PizzaData\Service\PizzaServiceInterface;
-use Zend\Console\ColorInterface as Color;
 use Zend\Mvc\Controller\AbstractConsoleController;
 use Zend\Text\Table\Table;
 use Zend\View\Model\ConsoleModel;
